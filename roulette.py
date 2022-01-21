@@ -40,3 +40,13 @@ def est_impair(n:int) -> bool:
             b (bool) : True if n is odd
     """
     return n % 2 == 1
+
+def est_passe(n:int) -> bool:
+    """
+        Cette fonction retourne 'True' si le chiffre est entre 19 et 36
+        Parameters : 
+            n (int) : un entier quelconque
+        Returns:
+            b (bool) : True if n is [19, 36]
+    """
+    return n >= 19 and n <= 36
