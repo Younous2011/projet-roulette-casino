@@ -50,3 +50,13 @@ def est_passe(n:int) -> bool:
             b (bool) : True if n is [19, 36]
     """
     return n >= 19 and n <= 36
+
+def est_manque(n:int) -> bool:
+    """
+        Cette fonction retourne 'True' si le chiffre est entre 0 et 18
+        Parameters : 
+            n (int) : un entier quelconque
+        Returns:
+            b (bool) : True if n is [0, 18]
+    """
+    return n >= 0 and n <= 18
