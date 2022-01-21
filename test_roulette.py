@@ -44,20 +44,34 @@ def test_est_passe_6():
     assert est_passe(37) == False, "37 n'est pas passe"
 
 # tests est_manque
-def test_est_passe_1():
+def test_est_manque_1():
     assert est_manque(3) == True, "3 est manque"
 
-def test_est_passe_2():
+def test_est_manque_2():
     assert est_manque(26) == False, "26 n'est pas manque"
 
-def test_est_passe_3():
+def test_est_manque_3():
     assert est_manque(18) == True, "18 est manque"
 
-def test_est_passe_4():
+def test_est_manque_4():
     assert est_manque(0) == True, "36 est manque"
 
-def test_est_passe_5():
+def test_est_manque_5():
     assert est_manque(19) == False, "19 n'est pas manque"
 
-def test_est_passe_6():
+def test_est_manque_6():
     assert est_manque(-1) == False, "-1 n'est pas manque"
+
+# test est_rouge
+def test_est_rouge_1():
+    assert est_rouge(3) == True, "3 est rouge"
+
+def test_est_rouge_2():
+    assert est_rouge(2) == False, "2 n'est pas rouge"
+
+# test est_noir
+def test_est_noir_1():
+    assert est_noir(2) == True, "2 est noir"
+
+def test_est_noir_2():
+    assert est_noir(3) == False, "3 n'est pas noir"
