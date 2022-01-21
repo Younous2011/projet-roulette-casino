@@ -13,3 +13,9 @@ def test_est_pair_1():
 
 def test_est_pair_2():
     assert est_pair(4) == True, "4 est un chiffre pair"
+
+def test_est_impair_1():
+    assert est_impair(3) == True, "3 est un chiffre impair"
+
+def test_est_impair_2():
+    assert est_impair(4) == False, "4 est un chiffre pair"
