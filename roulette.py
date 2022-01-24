@@ -103,3 +103,19 @@ def num_lignes(n:int) -> int:
             n (int) : 1 if n is in the first line, 2 if n is in the second line and more...
     """
     return ceil(n / 3) # On arrondi par excès
+
+def num_colonnes(n:int) -> int:
+    """
+        Cette fonction retourne 1 si le chiffre est à la ligne et à la colonne 1 etc...
+        Parameters:
+            n (int) : un entier quelconque
+        Returns:
+            n (int) : 1 if n is in the first line and at the first column and more...
+    """
+    """
+        n = (l - 1) * 3 + c car pour retrouver le chiffre n, nous comptons combien de chiffres avant cette ligne (l - 1 * 3),
+        puis on rajoute le numéro de colonnes correspondant.
+        c = n - 3 * (l - 1)
+        l = ceil(n/3)
+    """
+    return n - 3 * (ceil(n / 3) - 1)

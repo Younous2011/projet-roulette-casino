@@ -103,3 +103,15 @@ def test_num_lignes_1():
     ]
     for i in range(len(io)):
         assert num_lignes(io[i][0]) == io[i][1], f"{io[i][0]} appartient à la ligne {io[i][1]}"
+
+def test_num_colonnes_1():
+    io = [
+        [1, 1],
+        [3, 3],
+        [13, 1],
+        [15, 3],
+        [31, 1],
+        [33, 3]
+    ]
+    for i in range(len(io)):
+        assert num_colonnes(io[i][0]) == io[i][1], f"{io[i][0]} appartient à la ligne {io[i][0]} et à la colonne {io[i][1]}"
