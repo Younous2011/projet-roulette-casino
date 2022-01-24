@@ -1,5 +1,6 @@
 # Imports
 import random
+from math import ceil
 
 
 # Q1
@@ -82,3 +83,23 @@ def est_noir(n:int) -> bool:
     """
     liste_noir = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35]
     return n in liste_noir
+
+def num_tiers(n:int) -> int:
+    """
+        Cette fonction retourne 1 si le chiffre est entre 1 et 12, retourne 2 si le chiffre est entre 13 et 24 et retourne 3 si le chiffre est entre 25 et 36
+        Parameters : 
+            n (int) : un entier quelconque
+        Returns:
+            n (int) : 1 if n in [0, 12], 2 if in [13, 24] and 3 if n in [25, 36]
+    """
+    return ceil(n / 12) # On arrondi par excès
+
+def num_lignes(n:int) -> int:
+    """
+        Cette fonction retourne 1 si le chiffre appartient à la première ligne, 2 si le chiffre appartient à la deuxième etc..
+        Parameters : 
+            n (int) : un entier quelconque
+        Returns:
+            n (int) : 1 if n is in the first line, 2 if n is in the second line and more...
+    """
+    return ceil(n / 3) # On arrondi par excès
