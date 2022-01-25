@@ -1,6 +1,7 @@
 # Imports
 import random
 from math import ceil
+import string
 
 
 # Q1
@@ -119,3 +120,47 @@ def num_colonnes(n:int) -> int:
         l = ceil(n/3)
     """
     return n - 3 * (ceil(n / 3) - 1)
+    
+from typing import Union
+
+def calucler_gain(n:int, pari:Union[int, str], mise:int) -> int:
+    """
+        Cette fonction prend en paramètre n, le pari du joueur et la mise en retour
+        Parameters:
+            n (int) : un entier quelconque
+        Returns:
+            n (int) : 1 if n is in the first line and at the first column and more...
+    """
+
+    if pari == n:
+        return mise*36
+
+    elif pari == "rouge" and est_rouge(n) == True:
+        return mise*2
+
+    elif pari == "noir" and est_noir(n):
+        return mise*2
+
+    elif pari == "pair" and est_pair(n):
+        return mise*2
+
+    elif pari == "impair" and est_impair(n):
+        return mise*2
+
+    elif pari == "manque" and est_manque(n):
+        return mise*2
+
+    elif pari == "passe" and est_passe(n):
+        return mise*2
+
+    elif type(pari) == str and pari[0] == "T" and num_tiers(n) == int(pari[1]):
+        return mise*3
+
+    elif type(pari) == str and pari[0] == "C" and num_colonnes(n) == int(pari[1]):
+        return mise*3
+
+    elif type(pari) == str and pari[0] == "L" and num_lignes(n) == int(pari[1:]):
+        return mise*12
+
+    else:
+        return 0
