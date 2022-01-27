@@ -164,3 +164,116 @@ def calucler_gain(n:int, pari:Union[int, str], mise:int) -> int:
 
     else:
         return 0
+
+
+def afficher_tirage(n:int):
+    """
+        Cette fonction affiche tous ce qui a été inséré dans les fonctions précédentes 'n'
+        Parameters:
+            n (int): Tirage
+        Return:
+            None
+        Example:
+            Tirage : 33
+            Noir, impair et passe
+            Tiers T3, colonne C3 et ligne L11
+            KOLMOGOROV, votre nouveau capital est de : 501
+    """
+    print(f"Tirage : {n}")
+    if est_rouge(n):
+        print("Rouge", end=", ")
+
+    else:
+        print("Noir", end=", ")
+
+
+    if est_pair(n):
+        print("pair", end=" et ")
+
+    else:
+        print("impair", end=" et ")
+
+    if est_passe(n):
+        print("passe")
+
+    else:
+        print("manque")
+
+    l = num_lignes(n)
+    c = num_colonnes(n)
+    t = num_tiers(n)
+
+    print(f"Tiers T{t}, colonne C{c} et ligne L{l}")
+
+def afficher_regle(nom:str):
+    s = f"""
+        Bonjour {nom} !
+                    ----------------------
+                    |         0          |
+        -------------------------------------
+            M |     |   1   |   2   |   3   |   L1
+            A |  T  |   4   |   5   |   6   |   L2
+            N |  1  |   7   |   8   |   9   |   L3
+            Q |     |  10   |  11   |  12   |   L4
+            U |  ----------------------------
+            E |     |  13   |  14   |  15   |   L5
+        ------|  T  |  16   |  17   |  18   |   L6
+              |  2  |  19   |  20   |  21   |   L7
+            P |     |  22   |  23   |  24   |   L8
+            A |------------------------------
+            S |     |  25   |  26   |  27   |   L9
+            S |  T  |  28   |  29   |  30   |   L10
+            E |  3  |  31   |  32   |  33   |   L11
+              |     |  34   |  35   |  36   |   L12
+        -------------------------------------
+                    C1      C2      C3
+
+
+        PAIR
+        IMPAIR
+        MANQUE : 1-18
+        PASSE : 19-36
+        ROUGE : 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36
+        NOIR : 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35
+
+        Liste des paris :
+            * numéro simple (rapporte 36 fois la mise) : saisir un numéro entre 0 et 36
+            * pair (rapporte 2 fois la mise) : saisir P
+            * impair (rapporte 2 fois la mise) : saisir I
+            * manque (numéros de 1 à 18, rapporte 2 fois la mise) : saisir M
+            * passe (numéros de 19 à 36, rapporte 2 fois la mise) : saisir S
+            * rouge (rapporte 2 fois la mise) : saisir R
+            * noir (rapporte 2 fois la mise) : saisir N
+            * tiers (rapporte 3 fois la mise) : saisir T et le numéro du tiers (e.g. T2)
+            * colonne (rapporte 3 fois la mise) : saisir C et le numéro du tiers (e.g. C3)
+            * ligne (rapporte 12 fois la mise) : saisir L et le numéro de ligne (e.g. L7)
+        """
+    print(s)
+
+def demander_pari() -> Union[str, int]:
+    pari = input("Quel est votre pari ? : ")
+    if pari.isnumeric():
+        pari = int(pari)
+
+    return pari
+
+def demander_mise() -> int:
+    mise = int(input("Combien misez-vous ?"))
+    return mise
+
+
+tune = 1000
+
+name = demander_nom()
+afficher_regle(name)
+
+
+while tune > 0:
+    pari = demander_pari()
+    mise = demander_mise()
+    tirage = tirer_numero()
+    tune = tune - mise
+    gain = calucler_gain(tirage, pari, mise)
+
+    afficher_tirage(tirage)
+    print(f"tune: {tune}€")
