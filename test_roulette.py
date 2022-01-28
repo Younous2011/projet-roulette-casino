@@ -1,4 +1,4 @@
-from roulette import *
+from roulette import tirer_numero, est_pair, est_impair, est_manque, est_passe, est_rouge, est_noir, num_tiers, num_colonnes, num_lignes, calculer_gain
 
 
 # tests generate random
@@ -87,7 +87,8 @@ def test_num_tiers_1():
         [24, 2],
         [25, 3],
         [27, 3],
-        [36, 3]
+        [36, 3],
+        [16, 2]
     ]
     for i in range(len(io)):
         assert num_tiers(io[i][0]) == io[i][1], f"{io[i][0]} appartient au tiers {io[i][1]}"
@@ -120,52 +121,52 @@ def test_num_colonnes_1():
 
 # test calculer_gain
 def test_calculer_gain_1():
-    assert calucler_gain(10, "rouge", 150) == 0, "10 n'est pas rouge ! Le gain doit être à 0"
+    assert calculer_gain(10, "rouge", 150) == 0, "10 n'est pas rouge ! Le gain doit être à 0"
 
 def test_calculer_gain_2():
-    assert calucler_gain(10, "noir", 100) == 200, "10 est noir ! le gain doit être 200 $"
+    assert calculer_gain(10, "noir", 100) == 200, "10 est noir ! le gain doit être 200 $"
 
 def test_calculer_gain_3():
-    assert calucler_gain(5, 4, 100) == 0, "5 est diffèrent de 4 ! le gain doit être 0$"
+    assert calculer_gain(5, 4, 100) == 0, "5 est diffèrent de 4 ! le gain doit être 0$"
 
 def test_calculer_gain_4():
-    assert calucler_gain(5, 5, 100) == 3600, "5 est égale à 5 ! le gain doit être 3600$"
+    assert calculer_gain(5, 5, 100) == 3600, "5 est égale à 5 ! le gain doit être 3600$"
 
 def test_calculer_gain_5():
-    assert calucler_gain(5, "impair", 100) == 200, "5 est impair ! le gain doit être 200$"
+    assert calculer_gain(5, "impair", 100) == 200, "5 est impair ! le gain doit être 200$"
 
 def test_calculer_gain_6():
-    assert calucler_gain(4, "pair", 100) == 200, "4 est pair ! le gain doit être 200$"
+    assert calculer_gain(4, "pair", 100) == 200, "4 est pair ! le gain doit être 200$"
 
 def test_calculer_gain_7():
-    assert calucler_gain(5, "pair", 100) == 0, "5 n'est pas pair ! le gain doit être 0$"
+    assert calculer_gain(5, "pair", 100) == 0, "5 n'est pas pair ! le gain doit être 0$"
 
 def test_calculer_gain_8():
-    assert calucler_gain(4, "impair", 100) == 0, "4 n'est pas impair! le gain doit être 0$"
+    assert calculer_gain(4, "impair", 100) == 0, "4 n'est pas impair! le gain doit être 0$"
 
 def test_calculer_gain_9():
-    assert calucler_gain(20, "passe", 100) == 200, "20 est passe ! le gain doit être 200$"
+    assert calculer_gain(20, "passe", 100) == 200, "20 est passe ! le gain doit être 200$"
 
 def test_calculer_gain_10():
-    assert calucler_gain(4, "manque", 100) == 200, "4 est manque! le gain doit être 200$"
+    assert calculer_gain(4, "manque", 100) == 200, "4 est manque! le gain doit être 200$"
 
 def test_calculer_gain_11():
-    assert calucler_gain(5, "T1", 100) == 300, "5 est du 1er tiers ! le gain doit être 300$"
+    assert calculer_gain(5, "t1", 100) == 300, "5 est du 1er tiers ! le gain doit être 300$"
 
 def test_calculer_gain_12():
-    assert calucler_gain(4, "L2", 100) == 1200, "4 est manque! le gain doit être 1200$"
+    assert calculer_gain(4, "l2", 100) == 1200, "4 est manque! le gain doit être 1200$"
 
 def test_calculer_gain_13():
-    assert calucler_gain(5, "C2", 100) == 300, "5 est de la 2ème colonne ! le gain doit être 300$"
+    assert calculer_gain(5, "c2", 100) == 300, "5 est de la 2ème colonne ! le gain doit être 300$"
 
 def test_calculer_gain_14():
-    assert calucler_gain(1, "T2", 100) == 0, "1 n'est pas du 2ème tiers ! le gain doit être 0$"
+    assert calculer_gain(1, "t2", 100) == 0, "1 n'est pas du 2ème tiers ! le gain doit être 0$"
 
 def test_calculer_gain_15():
-    assert calucler_gain(5, "L5", 100) == 0, "5 n'appartient pas à la ligne 5 ! le gain doit être 0$"
+    assert calculer_gain(5, "l5", 100) == 0, "5 n'appartient pas à la ligne 5 ! le gain doit être 0$"
 
 def test_calculer_gain_16():
-    assert calucler_gain(5, "C3", 100) == 0, "5 n'appartient pas à la 3ème colonne ! le gain doit être 0$"
+    assert calculer_gain(5, "c3", 100) == 0, "5 n'appartient pas à la 3ème colonne ! le gain doit être 0$"
 
 def test_calculer_gain_17():
-    assert calucler_gain(36, "L12", 100) == 1200, "36 appartient à la ligne 12 ! Le gain doir être 1200$"
+    assert calculer_gain(36, "l12", 100) == 1200, "36 appartient à la ligne 12 ! Le gain doir être 1200$"

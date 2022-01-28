@@ -123,7 +123,7 @@ def num_colonnes(n:int) -> int:
     
 from typing import Union
 
-def calucler_gain(n:int, pari:Union[int, str], mise:int) -> int:
+def calculer_gain(n:int, pari:Union[int, str], mise:int) -> int:
     """
         Cette fonction prend en paramètre n, le pari du joueur et la mise en retour
         Parameters:
@@ -153,13 +153,13 @@ def calucler_gain(n:int, pari:Union[int, str], mise:int) -> int:
     elif pari == "passe" and est_passe(n):
         return mise*2
 
-    elif type(pari) == str and pari[0] == "T" and num_tiers(n) == int(pari[1]):
+    elif type(pari) == str and pari[0] == "t" and num_tiers(n) == int(pari[1]):
         return mise*3
 
-    elif type(pari) == str and pari[0] == "C" and num_colonnes(n) == int(pari[1]):
+    elif type(pari) == str and pari[0] == "c" and num_colonnes(n) == int(pari[1]):
         return mise*3
 
-    elif type(pari) == str and pari[0] == "L" and num_lignes(n) == int(pari[1:]):
+    elif type(pari) == str and pari[0] == "l" and num_lignes(n) == int(pari[1:]):
         return mise*12
 
     else:
@@ -238,12 +238,12 @@ def afficher_regle(nom:str):
 
         Liste des paris :
             * numéro simple (rapporte 36 fois la mise) : saisir un numéro entre 0 et 36
-            * pair (rapporte 2 fois la mise) : saisir P
-            * impair (rapporte 2 fois la mise) : saisir I
-            * manque (numéros de 1 à 18, rapporte 2 fois la mise) : saisir M
-            * passe (numéros de 19 à 36, rapporte 2 fois la mise) : saisir S
-            * rouge (rapporte 2 fois la mise) : saisir R
-            * noir (rapporte 2 fois la mise) : saisir N
+            * pair (rapporte 2 fois la mise) : saisir Pair
+            * impair (rapporte 2 fois la mise) : saisir Impair
+            * manque (numéros de 1 à 18, rapporte 2 fois la mise) : saisir Manque
+            * passe (numéros de 19 à 36, rapporte 2 fois la mise) : saisir Passe
+            * rouge (rapporte 2 fois la mise) : saisir Rouge
+            * noir (rapporte 2 fois la mise) : saisir Noir
             * tiers (rapporte 3 fois la mise) : saisir T et le numéro du tiers (e.g. T2)
             * colonne (rapporte 3 fois la mise) : saisir C et le numéro du tiers (e.g. C3)
             * ligne (rapporte 12 fois la mise) : saisir L et le numéro de ligne (e.g. L7)
@@ -254,26 +254,15 @@ def demander_pari() -> Union[str, int]:
     pari = input("Quel est votre pari ? : ")
     if pari.isnumeric():
         pari = int(pari)
+    else:
+        pari = pari.lower()
 
     return pari
 
-def demander_mise() -> int:
-    mise = int(input("Combien misez-vous ?"))
+def demander_mise(tune:Union[int, float], miseMax:int) -> int:
+    mise = int(input("Combien misez-vous ? : "))
+    limite = min(tune, miseMax)
+    while mise < 0 or mise > limite:
+        mise = int(input(f"Combien misez-vous ? (entre 1 et {limite}) : "))
+
     return mise
-
-
-tune = 1000
-
-name = demander_nom()
-afficher_regle(name)
-
-
-while tune > 0:
-    pari = demander_pari()
-    mise = demander_mise()
-    tirage = tirer_numero()
-    tune = tune - mise
-    gain = calucler_gain(tirage, pari, mise)
-
-    afficher_tirage(tirage)
-    print(f"tune: {tune}€")
