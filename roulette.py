@@ -1,7 +1,6 @@
 # Imports
 import random
 from math import ceil
-import string
 
 
 # Q1
